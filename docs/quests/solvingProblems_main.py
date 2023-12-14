@@ -1,5 +1,5 @@
-# solvingProblems_main 모듈에서 connect_to_mongodb와 insert_quiz_list 함수를 가져옴
-from solvingProblems_main import connect_to_mongodb, insert_quiz_list
+# solvingProblems_function 모듈에서 connect_to_mongodb와 insert_quiz_list 함수를 가져옴
+from solvingProblems_function import connect_to_mongodb, insert_quiz_list
 
 # MongoDB에서 문제와 선택지를 가져와서 사용자에게 문제를 출제하고 답을 받는 함수
 def question_choices_from_mongodb(collection):
@@ -31,10 +31,10 @@ def question_choices_from_mongodb(collection):
         for choice in choices:
             # 보기를 출력
             print("{}. {}".format(choice_number, choice))
-            choice_number += 1  # 선택지 번호를 하나 증가시킴
+            choice_number += 1  # 보기 번호를 하나 증가시킴
 
         # 사용자로부터 답을 입력 받음
-        user_answer = int(input("답을 입력하세요 : "))
+        user_answer = int(input("답을 입력하세요 : ")) # 수학 연산에 사용하기 위해 문자열을 정수로 변환
 
         # 문서(document)에 'answer_number' 키가 있는지 확인
         if 'answer_number' in document:
