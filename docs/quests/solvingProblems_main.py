@@ -36,17 +36,20 @@ def question_choices_from_mongodb(collection):
         # 사용자로부터 답을 입력 받음
         user_answer = int(input("답을 입력하세요 : "))
 
-        # 사용자의 답이 정답이면
-        if user_answer == document['answer_number']:
-            print("정답입니다!")
-            correct_answers += 1  # 정답 개수를 하나 증가시킴
-        else:
-            print("틀렸습니다!")
+        # 문서(document)에 'answer_number' 키가 있는지 확인
+        if 'answer_number' in document:
+            # 사용자가 입력한 답(int(user_answer))과 문서에 저장된 정답(document['answer_number'])을 비교
+            if int(user_answer) == document['answer_number']:
+                # 사용자가 입력한 답과 문서에 저장된 정답이 일치하는 경우, 즉 정답인 경우
+                print("정답입니다!")
+                correct_answers += 1  # 정답 개수를 증가시킵니다.
+            else:
+                # 사용자가 입력한 답과 문서에 저장된 정답이 일치하지 않는 경우, 즉 오답인 경우
+                print("틀렸습니다!")
 
         # MongoDB에 사용자의 이름과 답을 저장
         #  $set은 MongoDB의 update 연산자 중 하나로, 특정 필드의 값을 변경하거나 새 필드를 추가할 때 사용
-        #  _id: MongoDB에서 document는 고유한 _id 필드 자동으로 생성, 이 _id 필드를 사용하면 특정 문서를 쉽게 찾을 수 있음.
-        
+        #  _id: MongoDB에서 document는 고유한 _id 필드 자동으로 생성, _id 필드를 사용하면 특정 문서를 쉽게 찾을 수 있음
         collection.update_one({'_id': document['_id']}, {"$set": {user_name: user_answer}})
 
         question_number += 1  # 문제 번호를 하나 증가시킴
