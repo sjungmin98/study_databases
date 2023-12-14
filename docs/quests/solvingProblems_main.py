@@ -31,7 +31,7 @@ quiz_list = [
     }
 ]
 
-for index in range(len(quiz_list)):
+for index in [range(len(quiz_list))]:
     quiz = quiz_list[index]
     print("{}. {}".format(index + 1, quiz['question']))
     for i in range(len(quiz['choices'])):
