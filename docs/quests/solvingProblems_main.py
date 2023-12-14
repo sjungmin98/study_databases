@@ -4,7 +4,7 @@ from pymongo import MongoClient
 database_name = 'local'
 collection_name = 'solvingproblem'
 
-def connect_to_mongodb(database_name, collection_name) :
+def connect_to_mongodb(database_name, collection_name):
     # MongoDB에 연결하는 함수
     # MongoClient를 이용해 MongoDB 서버에 접속
     client = MongoClient('mongodb://localhost:27017/') 
@@ -17,9 +17,8 @@ def connect_to_mongodb(database_name, collection_name) :
 
     return collection
 
-def insert_quiz_data(collection, quiz_list) :
-    # MongoDB에 데이터를 삽입하는 함수
-    # insert_many 메서드를 사용하여 여러 문서를 한 번에 삽입
+def insert_quiz_data(collection, quiz_list):
+    # MongoDB에 데이터를 삽입
     collection.insert_many(quiz_list)
 
 # MongoDB에 연결
