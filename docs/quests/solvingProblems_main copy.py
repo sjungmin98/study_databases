@@ -33,8 +33,8 @@ quiz_list = [
 
 for index in range(len(quiz_list)):
     quiz = quiz_list[index]
-    print("{}. {}".format(index + 1, quiz['question']))
+    print("문제{}. {}".format(index + 1, quiz['question']))
     for i in range(len(quiz['choices'])):
         choice = quiz['choices'][i]
-        print("   {}. {}".format(i + 1, choice))
+        print(" {}. {}".format(i + 1, choice))
     print()
