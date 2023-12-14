@@ -20,8 +20,13 @@ def connect_to_mongodb(database_name, collection_name):
 def insert_quiz_data(collection, quiz_list):
     # 퀴즈 리스트의 각 퀴즈에 대해
     for quiz in quiz_list:
-        # 동일한 질문을 가진 문서가 존재하지 않는 경우에만
-        if collection.count_documents({"question": quiz["question"]}) == 0:
+        # 동일한 데이터를 중복시키지 않기 위해 count.documents 사용
+        ## 만약 동일한 경우가 없다면
+        if collection.count_documents({'question': quiz['question'], 
+                                       'choices': quiz['choices'], 
+                                       'answer': quiz['answer'], 
+                                       'answer_number': quiz['answer_number'], 
+                                       'score': x['score']}) == 0:
             # 퀴즈를 컬렉션에 삽입
             collection.insert_one(quiz)
 
