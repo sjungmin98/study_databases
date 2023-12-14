@@ -1,31 +1,33 @@
+# MongoClient 모듈 불러오기
 from pymongo import MongoClient
 
-# 기본 데이터베이스와 컬렉션 이름
+# 데이터베이스 및 컬렉션 이름을 설정
 database_name = 'local'
 collection_name = 'solvingproblem'
 
+# MongoDB에 연결하고 지정된 데이터베이스와 컬렉션에 연결하는 함수를 정의
 def connect_to_mongodb(database_name, collection_name):
-    # MongoDB에 연결하는 함수
-    # MongoClient를 이용해 MongoDB 서버에 접속
-    client = MongoClient('mongodb://localhost:27017/') 
-
-    # 데이터베이스 선택
+    # MongoClient를 사용하여 로컬호스트의 MongoDB에 연결
+    client = MongoClient('mongodb://localhost:27017/')
+    # 지정된 데이터베이스를 선택
     database = client[database_name]
-    
-    # 컬렉션 선택 (없으면 새로 생성)
+    # 지정된 컬렉션을 선택
     collection = database[collection_name]
-
+    # 컬렉션 객체를 반환
     return collection
 
-def insert_quiz_data(collection, quiz_list):
-    # MongoDB에 데이터를 삽입
-    collection.insert_many(quiz_list)
+# 퀴즈 데이터를 MongoDB에 삽입하는 함수를 정의
+def insert_quiz_list(collection, quiz_list):
+    for quiz in quiz_list:
+        # 동일한 질문을 가진 문서가 존재하지 않는 경우에만 삽입
+        if collection.count_documents({"question": quiz["question"]}) == 0:
+            # 퀴즈를 컬렉션에 삽입
+            collection.insert_one(quiz)
 
-# MongoDB에 연결
-# 기본적으로 'local' 데이터베이스, 'solvingproblem' 컬렉션을 사용
+# MongoDB에 연결하고 지정된 데이터베이스와 컬렉션에 연결
 collection = connect_to_mongodb(database_name, collection_name)
 
-# 삽입할 퀴즈 데이터
+# 삽입할 퀴즈 데이터를 정의
 quiz_list = [
     {
         "question": "Python의 생성자 함수 이름은 무엇인가요?",
@@ -64,5 +66,4 @@ quiz_list = [
     }
 ]
 
-# 퀴즈 데이터 삽입
-insert_quiz_data(collection, quiz_list)
+insert_quiz_list(collection, quiz_list)
