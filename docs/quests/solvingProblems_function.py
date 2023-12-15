@@ -1,10 +1,6 @@
 # MongoClient 모듈을 import
 from pymongo import MongoClient
 
-# 데이터베이스 및 컬렉션 이름을 설정
-database_name = 'local'
-collection_name = 'solvingproblem'
-
 # MongoDB에 연결하고 지정된 데이터베이스와 컬렉션에 연결하는 함수를 정의
 def connect_to_mongodb(database_name, collection_name):
     # MongoClient를 사용하여 로컬호스트의 MongoDB에 연결
@@ -29,51 +25,6 @@ def insert_quiz_data(collection, quiz_list):
                                        'score': quiz['score']}) == 0:
             # 퀴즈를 컬렉션에 삽입
             collection.insert_one(quiz)
-
-# MongoDB에 연결하고 지정된 데이터베이스와 컬렉션에 연결
-collection = connect_to_mongodb(database_name, collection_name)
-
-# 삽입할 퀴즈 데이터를 정의
-quiz_list = [
-    {
-        "question": "Python의 생성자 함수 이름은 무엇인가요?",
-        "choices": ["__init__", "__main__", "__str__", "__del__"],
-        "answer": "__init__",
-        "answer_number": 1,
-        "score": 20
-    },
-    {
-        "question": "Python에서 'Hello, World!'를 출력하는 코드는 무엇인가요?",
-        "choices": ["print('Hello, World!')", "console.log('Hello, World!')", "printf('Hello, World!')", "echo 'Hello, World!'"],
-        "answer": "print('Hello, World!')",
-        "answer_number": 1,
-        "score": 20
-    },
-    {
-        "question": "Python의 주석을 나타내는 기호는 무엇인가요?",
-        "choices": ["//", "/* */", "#", "--"],
-        "answer": "#",
-        "answer_number": 3,
-        "score": 20
-    },
-    {
-        "question": "Python에서 리스트의 길이를 반환하는 함수는 무엇인가요?",
-        "choices": ["size()", "length()", "len()", "sizeof()"],
-        "answer": "len()",
-        "answer_number": 3,
-        "score": 20
-    },
-    {
-        "question": "Python에서 문자열을 숫자로 변환하는 함수는 무엇인가요?",
-        "choices": ["str()", "int()", "char()", "float()"],
-        "answer": "int()",
-        "answer_number": 2,
-        "score": 20
-    }
-]
-
-# 퀴즈 데이터를 MongoDB에 삽입
-insert_quiz_data(collection, quiz_list)
 
 def question_choices_from_mongodb(collection):
     user_name = input("이름을 입력해 주세요 : ")  # 사용자 이름 입력 받기
