@@ -75,7 +75,6 @@ quiz_list = [
 # 퀴즈 데이터를 MongoDB에 삽입
 insert_quiz_data(collection, quiz_list)
 
-# MongoDB에서 문제와 선택지를 가져와서 사용자에게 문제를 출제하고 답을 받는 함수
 def question_choices_from_mongodb(collection):
     user_name = input("이름을 입력해 주세요 : ")  # 사용자 이름 입력 받기
 
@@ -136,4 +135,3 @@ def calculate_final_score(correct_answers):
     if final_score > 100:  # 점수가 100을 초과하면
         final_score = 100  # 점수를 100으로 조정
     return final_score  # 최종 점수를 반환
-
