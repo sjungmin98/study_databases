@@ -1,9 +1,9 @@
 # solvingProblems_function 모듈에서 connect_to_mongodb와 insert_quiz_list 함수를 가져옴
-from solvingProblems_function import connect_to_mongodb, insert_quiz_list
+from solvingProblems_function import connect_to_mongodb, insert_quiz_data, quiz_list
 
 # MongoDB에서 문제와 선택지를 가져와서 사용자에게 문제를 출제하고 답을 받는 함수
 def question_choices_from_mongodb(collection):
-    user_name = input("이름을 입력해 주세요: ")  # 사용자 이름 입력 받기
+    user_name = input("이름을 입력해 주세요 : ")  # 사용자 이름 입력 받기
 
     query = {}  # MongoDB에서 모든 문서를 선택하기 위한 빈 쿼리(딕셔너리) 생성
     
@@ -63,9 +63,17 @@ def calculate_final_score(correct_answers):
         final_score = 100  # 점수를 100으로 조정
     return final_score  # 최종 점수를 반환
 
+database_name = 'local'
+collection_name = 'solvingproblem'
+
 # MongoDB에 연결하고, 문제 리스트를 가져옴
 collection = connect_to_mongodb(database_name, collection_name)
-quiz_list = insert_quiz_list(collection)
+
+# MongoDB 컬렉션의 모든 문서를 삭제하여 초기화 (다른 user가 이용하기 전 user_answer 리셋시키기 위함)
+collection.delete_many({})
+
+# 퀴즈 데이터를 MongoDB에 삽입
+insert_quiz_data(collection, quiz_list)
 
 # 문제를 출제하고, 사용자의 답을 받아 정답 개수를 계산
 correct_answers = question_choices_from_mongodb(collection)

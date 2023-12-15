@@ -26,7 +26,7 @@ def insert_quiz_data(collection, quiz_list):
                                        'choices': quiz['choices'], 
                                        'answer': quiz['answer'], 
                                        'answer_number': quiz['answer_number'], 
-                                       'score': x['score']}) == 0:
+                                       'score': quiz['score']}) == 0:
             # 퀴즈를 컬렉션에 삽입
             collection.insert_one(quiz)
 
