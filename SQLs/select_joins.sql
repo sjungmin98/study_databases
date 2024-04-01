@@ -14,7 +14,7 @@ FROM ( SELECT Products.ProductName, Products.Price, Orders.OrderID, Customers.Cu
        FROM OrderDetails 
        INNER JOIN Products ON OrderDetails.ProductID = Products.ProductID 
        INNER JOIN Orders ON OrderDetails.OrderID = Orders.OrderID 
-       INNER JOIN Customers ON Orders.CustomerID = Customers.CustomerID ) AS DetailedOrders
+       INNER JOIN Customers ON Orders.CustomerID = Customers.CustomerID )
 GROUP BY ProductName, Price, CustomerName
 ;
 
