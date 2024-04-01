@@ -8,6 +8,7 @@ WHERE CustomerID IN (
 )
 ;
 
+
 SELECT *
 FROM (
     SELECT EmployeeID, COUNT(OrderID) AS OrderCount
@@ -16,6 +17,7 @@ FROM (
     HAVING COUNT(OrderID) >= 20
 ) AS SubQuery
 ;
+-- Number of Records: 9
 
 SELECT *
 FROM Suppliers
@@ -30,3 +32,4 @@ WHERE SupplierID IN (
     ) AS SubQuery
 )
 ;
+-- Number of Records: 2
