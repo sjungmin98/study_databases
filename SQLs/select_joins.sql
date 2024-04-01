@@ -5,7 +5,7 @@ FROM Customers
 GROUP BY Customers.CustomerName;
 
 
--- + 조건 : CustomerName별로 주문 갯수 표시
+-- + 조건 : CustomerName별로 주문 개수 표시
 
 -- 이 쿼리는 고객별 주문 횟수를 계산하기 위해 Customers와 Orders 테이블을 INNER JOIN함
 
@@ -32,7 +32,7 @@ GROUP BY Products.ProductName, Products.Price, Customers.CustomerName
 ORDER BY Products.ProductName, Customers.CustomerName
 ;
 
--- + 조건 : 제품명, 가격, 주문 갯수, 고객명 표시
+-- + 조건 : 제품명, 가격, 주문 개수, 고객명 표시
 
 -- 이 쿼리는 Products, OrderDetails, Orders, Customers 테이블을 INNER JOIN함.
 
@@ -59,13 +59,13 @@ FROM Orders
 LIMIT 0, 1
 ;
 
--- + 조건 : 가장 많이 주문 받은 회사 직원명과 갯수
+-- + 조건 : 가장 많이 주문 받은 회사 직원명과 개수
 
 -- 이 쿼리는 먼저 주문 데이터와 직원 데이터를 함께 가져와야 하기 떄문에,
 -- Orders 테이블과 Employees 테이블을 조인하여 각 주문에 대한 직원의 정보를 가져옴
 
 -- 가져온 데이터를 직원별로 그룹화 (GROUP BY Employees.EmployeeID) 하고,
--- 각 직원이 받은 주문의 수를 계산하기 위해 COUNT(Orders.OrderID)를 사용하여 직원별 주문 갯수를 계산함
+-- 각 직원이 받은 주문의 수를 계산하기 위해 COUNT(Orders.OrderID)를 사용하여 직원별 주문 개수를 계산함
 
 -- 이 후, 주문 수에 따라 내림차순으로 정렬하여 주문을 가장 많이 처리한 직원이 상위에 오도록 함
 
