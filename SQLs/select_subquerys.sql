@@ -10,11 +10,11 @@ WHERE CustomerID IN (
 
 SELECT *
 FROM (
-    SELECT CustomerID, COUNT(OrderID) AS OrderCount
+    SELECT EmployeeID, COUNT(OrderID) AS OrderCount
     FROM Orders
-    GROUP BY CustomerID
+    GROUP BY EmployeeID
     HAVING COUNT(OrderID) >= 20
-)
+) AS SubQuery
 ;
 
 SELECT *
@@ -27,5 +27,6 @@ WHERE SupplierID IN (
         GROUP BY SupplierID
         ORDER BY COUNT(DISTINCT CategoryID) DESC
         LIMIT 2
-    ) AS Subquery
-);
+    ) AS SubQuery
+)
+;
