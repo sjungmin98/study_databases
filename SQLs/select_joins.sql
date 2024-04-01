@@ -7,12 +7,6 @@ FROM ( SELECT Customers.CustomerName, Orders.OrderID
 GROUP BY CustomerOrders.CustomerName
 ;
 
-| CustomerName                        | OrderCount |
-|-------------------------------------|------------|
-| Alfreds Futterkiste                 | 6          |
-| Ana Trujillo Emparedados y helados  | 4          |
-| Antonio Moreno Taquería             | 7          |
-
 -- - Table : OrderDetails 
 -- + 조건 : 제품명,가격, 주문 갯수, 고객명 표시
 SELECT ProductName, Price, COUNT(OrderID) AS Quantity, CustomerName
