@@ -7,7 +7,7 @@ WHERE CustomerID IN (
     HAVING COUNT(OrderID) >= 5
 )
 ;
-
+-- Number of Records: 72
 
 SELECT *
 FROM (
