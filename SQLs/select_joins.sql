@@ -9,12 +9,13 @@ GROUP BY CustomerOrders.CustomerName
 
 -- - Table : OrderDetails 
 -- + 조건 : 제품명,가격, 주문 갯수, 고객명 표시
-SELECT Products.ProductName, Products.Price, COUNT(OrderDetails.OrderID) AS Quantity, Customers.CustomerName
-FROM OrderDetails
-    INNER JOIN Products ON OrderDetails.ProductID = Products.ProductID
-    INNER JOIN Orders ON OrderDetails.OrderID = Orders.OrderID
-    INNER JOIN Customers ON Orders.CustomerID = Customers.CustomerID
+SELECT Products.ProductName, Products.Price, SUM(OrderDetails.Quantity) AS TotalQuantity, Customers.CustomerName
+FROM Products
+       INNER JOIN OrderDetails ON Products.ProductID = OrderDetails.ProductID
+       INNER JOIN Orders ON OrderDetails.OrderID = Orders.OrderID
+       INNER JOIN Customers ON Orders.CustomerID = Customers.CustomerID
 GROUP BY Products.ProductName, Products.Price, Customers.CustomerName
+ORDER BY Products.ProductName, Customers.CustomerName
 ;
 
 -- - Table : Orders
