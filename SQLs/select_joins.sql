@@ -9,13 +9,12 @@ GROUP BY CustomerOrders.CustomerName
 
 -- - Table : OrderDetails 
 -- + 조건 : 제품명,가격, 주문 갯수, 고객명 표시
-SELECT ProductName, Price, COUNT(OrderID) AS Quantity, CustomerName
-FROM ( SELECT Products.ProductName, Products.Price, Orders.OrderID, Customers.CustomerName 
-       FROM OrderDetails 
-       INNER JOIN Products ON OrderDetails.ProductID = Products.ProductID 
-       INNER JOIN Orders ON OrderDetails.OrderID = Orders.OrderID 
-       INNER JOIN Customers ON Orders.CustomerID = Customers.CustomerID )
-GROUP BY ProductName, Price, CustomerName
+SELECT Products.ProductName, Products.Price, COUNT(OrderDetails.OrderID) AS Quantity, Customers.CustomerName
+FROM OrderDetails
+    INNER JOIN Products ON OrderDetails.ProductID = Products.ProductID
+    INNER JOIN Orders ON OrderDetails.OrderID = Orders.OrderID
+    INNER JOIN Customers ON Orders.CustomerID = Customers.CustomerID
+GROUP BY Products.ProductName, Products.Price, Customers.CustomerName;
 ;
 
 -- - Table : Orders
