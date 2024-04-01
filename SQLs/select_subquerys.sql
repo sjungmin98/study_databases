@@ -19,7 +19,7 @@ FROM (
 ;
 -- Number of Records: 9
 
-SELECT *
+SELECT SupplierID, SupplierName
 FROM Suppliers
 WHERE SupplierID IN (
     SELECT SupplierID
@@ -28,7 +28,7 @@ WHERE SupplierID IN (
         FROM Products
         GROUP BY SupplierID
         ORDER BY COUNT(DISTINCT CategoryID) DESC
-        LIMIT 2
+        LIMIT 0, 2
     ) AS TopTwoSuppliers
 )
 ;
