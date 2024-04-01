@@ -14,6 +14,8 @@ GROUP BY Customers.CustomerName;
 
 -- INNER JOIN하여 Customers 테이블과 Orders 테이블을 결합했기 때문에 Customers.CustomerID와 Orders.CustomerID가 동일한 값을 가짐
 
+-- Orders 테이블의 CustomerID가 Customers 테이블의 CustomerID와 동일한 값을 가져야 하는 것은 각 주문이 어떤 고객에게 속하는지를 정확하게 추적하기 위한 필수적인 조건
+
 -- 주문을 개별적으로 추적하기 위해 CustomerName값으로 그룹화하여, 같은 고객에 대한 주문들을 한 그룹으로 합침
 
 -- COUNT(Orders.OrderID)를 통해 각 고객이 몇 번의 주문을 했는지를 계산함 
