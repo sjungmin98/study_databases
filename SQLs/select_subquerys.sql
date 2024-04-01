@@ -29,7 +29,7 @@ WHERE SupplierID IN (
         GROUP BY SupplierID
         ORDER BY COUNT(DISTINCT CategoryID) DESC
         LIMIT 2
-    ) AS SubSubQuery
+    ) AS TopSuppliers
 )
 ;
 -- Number of Records: 2
