@@ -9,7 +9,8 @@ FROM Customers
     LEFT JOIN Orders 
     ON Customers.CustomerID = Orders.CustomerID
 GROUP BY Customers.CustomerID, Customers.CustomerName
-HAVING COUNT(Orders.OrderID) <= 1;
+HAVING COUNT(Orders.OrderID) <= 1
+;
 
 
 -- 조건 : 판매자 중 수익 낮은 순위자 3명 정보, 총 판매액
