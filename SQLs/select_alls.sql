@@ -69,4 +69,5 @@ FROM Categories
     ON Products.ProductID = OrderDetails.ProductID
     INNER JOIN Orders 
     ON OrderDetails.OrderID = Orders.OrderID
-GROUP BY Categories.CategoryID;
+GROUP BY Categories.CategoryID
+;
